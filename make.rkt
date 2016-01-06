@@ -30,16 +30,16 @@
     ; Uncommitted code
     (when (non-empty-string? (with-output-to-string
                                (lambda () (system* git "status" "--porcelain"))))
-      (error "Please commit changes before deploying"))
+      (raise-user-error 'nanopass.github.io "Please commit changes before deploying"))
     ; Oaster does not exist
     (when (equal? (current-branch) "master")
-      (error "Cannot deploy in master branch"))
+      (raise-user-error 'nanopass.github.io "Cannot deploy in master branch"))
     ; Origin does not exist
     (unless (set-member? (string-split (with-output-to-string
                                          (lambda () (system* git "remote")))
                                        "\n")
                          "origin")
-      (error "Cannot find origin remote")))
+      (raise-user-error 'nanopass.github.io "Cannot find origin remote")))
 
   ;; Generate html files
   (for ([f (in-list files)])
