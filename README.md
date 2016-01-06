@@ -2,7 +2,7 @@ Nanopass Website
 ================
 
 Due to a limitation in how Github Pages works, development for this
-repo happens on the `source` branch. Once clones, run:
+repo happens on the `source` branch. Once cloned, run:
 
 ```
 git checkout source
