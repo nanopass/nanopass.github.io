@@ -20,6 +20,6 @@
   (dict-keys file-table))
 
 (define html-file-table
-  (for/list ([f (in-list files)]
+  (for/list ([f (in-list (dict-keys file-table))]
              [v (in-list (dict-values file-table))])
     (cons (path-replace-suffix f ".html") v)))

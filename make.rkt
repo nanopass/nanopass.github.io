@@ -18,7 +18,6 @@
     "Deploy blog to github"
     (deploy? #t)]))
 
-;; Check error conditions if deploying
 (parameterize ([current-directory project-root-dir])
   (define current-branch
     (make-parameter
@@ -28,11 +27,18 @@
 
   ;; Error if repo is not in commitable state
   (when (deploy?)
+    ; Uncommitted code
     (when (non-empty-string? (with-output-to-string
                                (lambda () (system* git "status" "--porcelain"))))
       (error "Please commit changes before deploying"))
+    ; Oaster does not exist
     (when (equal? (current-branch) "master")
-      (error "Cannot deploy in master branch")))
+      (error "Cannot deploy in master branch"))
+    ; Origin does not exist
+    (unless (set-member? (with-output-to-string
+                           (lambda () (system* git "remote")))
+                         "origin")
+      (error "Cannot find origin remote")))
 
   ;; Generate html files
   (for ([f (in-list files)])
