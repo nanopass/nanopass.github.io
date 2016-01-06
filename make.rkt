@@ -35,8 +35,9 @@
     (when (equal? (current-branch) "master")
       (error "Cannot deploy in master branch"))
     ; Origin does not exist
-    (unless (set-member? (with-output-to-string
-                           (lambda () (system* git "remote")))
+    (unless (set-member? (string-split (with-output-to-string
+                                         (lambda () (system* git "remote")))
+                                       "\n")
                          "origin")
       (error "Cannot find origin remote")))
 
