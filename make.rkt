@@ -8,6 +8,16 @@
 (define-runtime-path git (let ([f (find-executable-path "git")])
                            (or f (error "git could not be found"))))
 
+(define deploy? (make-parameter #f))
+
+(define flags
+  (command-line
+   #:program "nanopass-website-make"
+   #:once-any
+   [("-d" "--deploy")
+    "Deploy blog to github"
+    (deploy? #t)]))
+
 ;; Check error conditions if deploying
 (parameterize ([current-directory project-root-dir])
   (define current-branch
@@ -17,12 +27,12 @@
         (lambda () (system* git "rev-parse" "--abbrev-ref" "HEAD"))))))
 
   ;; Error if repo is not in commitable state
-  (when (non-empty-string? (with-output-to-string
-                             (lambda () (system* git "status" "--porcelain"))))
-    (error "Please commit changes before deploying"))
-  (when (equal? (current-branch) "master")
-    (error "Cannot deploy in master branch"))
-
+  (when (deploy?)
+    (when (non-empty-string? (with-output-to-string
+                               (lambda () (system* git "status" "--porcelain"))))
+      (error "Please commit changes before deploying"))
+    (when (equal? (current-branch) "master")
+      (error "Cannot deploy in master branch")))
 
   ;; Generate html files
   (for ([f (in-list files)])
@@ -31,9 +41,10 @@
       (lambda () (system* (find-exe) f))))
 
   ;; Push html files to origin in master branch
-  (system* git "checkout" "-B" "master")
-  (for ([f (in-list (dict-keys html-file-table))])
-    (system* git "add" f))
-  (system* git "commit" "-m" "\"Automatic commit\"")
-  (system* git "push" "origin" "master" "-f")
-  (system* git "branch" (current-branch)))
+  (when (deploy?)
+    (system* git "checkout" "-B" "master")
+    (for ([f (in-list (dict-keys html-file-table))])
+      (system* git "add" f))
+    (system* git "commit" "-m" "\"Automatic commit\"")
+    (system* git "push" "origin" "master" "-f")
+    (system* git "checkout" (current-branch))))
