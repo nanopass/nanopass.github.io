@@ -10,8 +10,9 @@
   (provide file-table)
   (define file-table
     '(
-      ("index.rkt"    . "Home")
-      ("download.rkt" . "Download")
+      ("index.rkt"         . "Home")
+      ("download.rkt"      . "Download")
+      ("documentation.rkt" . "Documentation")
       )))
 (require 'files-mod
          (for-syntax 'files-mod))

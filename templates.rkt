@@ -41,3 +41,14 @@
     @element/not-empty["footer" class: "footer"]{@p{Nanopass}}
     @script[src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"]
     @script[src: "js/bootstrap.min.js"]))
+
+@(define (page #:title title . content)
+   @doctype{html}
+   @html[lang: "en"]{
+     @header{title}
+     @body[id: "pn-top"]{
+       @navbar{title}
+       @content
+       @footer{}
+     }
+   })
