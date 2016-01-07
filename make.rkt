@@ -32,7 +32,7 @@
     (when (non-empty-string? (with-output-to-string
                                (lambda () (system* git "status" "--porcelain"))))
       (raise-user-error 'nanopass.github.io "Please commit changes before deploying"))
-    ; Oaster does not exist
+    ; Cannot deploy in master branch
     (when (equal? (current-branch) "master")
       (raise-user-error 'nanopass.github.io "Cannot deploy in master branch"))
     ; Origin does not exist
@@ -57,4 +57,5 @@
       (system* git "add" f))
     (system* git "commit" "-m" "\"Automatic commit\"")
     (system* git "push" "origin" "master" "-f")
+    (system* git "clean" "-fxd")
     (system* git "checkout" (current-branch))))
