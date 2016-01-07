@@ -2,14 +2,15 @@ body {
     padding-bottom: 20px;
 }
 
-.navbar-collapse {
+.navbar-inner,
+.navbar-header {
+    min-height: 100px !important;
+}
+
+.collapse {
     padding-top: 20px;
 }
 
 .navbar {
-    margin-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
     font-size: 30px;
-    height: 100px;
 }
