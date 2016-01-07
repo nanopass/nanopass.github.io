@@ -10,14 +10,18 @@
                            (or f (error "git could not be found"))))
 
 (define deploy? (make-parameter #f))
+(define force? (make-parameter #f))
 
 (define flags
   (command-line
    #:program "nanopass-website-make"
-   #:once-any
+   #:once-each
    [("-d" "--deploy")
     "Deploy blog to github"
-    (deploy? #t)]))
+    (deploy? #t)]
+   [("-f" "--force")
+    "Force deply, even with unchecked changes"
+    (force? #t)]))
 
 (parameterize ([current-directory project-root-dir])
   (define current-branch
@@ -29,8 +33,9 @@
   ;; Error if repo is not in commitable state
   (when (deploy?)
     ; Uncommitted code
-    (when (non-empty-string? (with-output-to-string
-                               (lambda () (system* git "status" "--porcelain"))))
+    (when (or (non-empty-string? (with-output-to-string
+                                   (lambda () (system* git "status" "--porcelain"))))
+              (force?))
       (raise-user-error 'nanopass.github.io "Please commit changes before deploying"))
     ; Cannot deploy in master branch
     (when (equal? (current-branch) "master")
