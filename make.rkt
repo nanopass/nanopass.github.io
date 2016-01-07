@@ -47,6 +47,10 @@
                          "origin")
       (raise-user-error 'nanopass.github.io "Cannot find origin remote")))
 
+  ;; If forcing, delete all files
+  (when (force?)
+    (system* git "clean" "-fxd"))
+
   ;; Generate html files
   (for ([f (in-list files)])
     (with-output-to-file (path-replace-suffix f ".html")
