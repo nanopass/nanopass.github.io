@@ -15,6 +15,12 @@
 (define watch? (make-parameter #f))
 (define port (make-parameter 8080))
 
+(define (build)
+  (for ([f (in-list files)])
+    (with-output-to-file (path-replace-suffix f ".html")
+      #:exists 'replace
+      (lambda () (system* (find-exe) f)))))
+
 (define flags
   (command-line
    #:program "nanopass-website-make"
@@ -33,6 +39,14 @@
     "Preview in web browser"
     (serve #:launch-browser? #t
            #:watch? (watch?)
+           #:watch-callback (lambda (path what)
+                              (match (path->string path)
+                                ;; Output file
+                                [(pregexp "\\.(?:html|xml|txt)") (void)]
+                                ;; Source file
+                                [_ (build)
+                                   (displayln #"\007")])) ;beep (hopefully)
+           #:watch-path project-root-dir
            #:port (port)
            #:root project-root-dir)]
    #:once-each
@@ -69,10 +83,7 @@
     (system* git "clean" "-fxd"))
 
   ;; Generate html files
-  (for ([f (in-list files)])
-    (with-output-to-file (path-replace-suffix f ".html")
-      #:exists 'replace
-      (lambda () (system* (find-exe) f))))
+  (build)
 
   ;; Push html files to origin in master branch
   (when (deploy?)
