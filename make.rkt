@@ -35,7 +35,7 @@
     ; Uncommitted code
     (when (or (non-empty-string? (with-output-to-string
                                    (lambda () (system* git "status" "--porcelain"))))
-              (force?))
+              (not (force?)))
       (raise-user-error 'nanopass.github.io "Please commit changes before deploying"))
     ; Cannot deploy in master branch
     (when (equal? (current-branch) "master")
