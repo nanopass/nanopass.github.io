@@ -5,6 +5,7 @@
 
 (require pict
          images/icons/style
+         "../files.rkt"
          (for-syntax syntax/parse
                      racket/syntax))
 
@@ -20,6 +21,7 @@
                        . < .
                        (file-or-directory-modify-seconds path)))
            (void (send name-bitmap save-file path 'png)))
+         (add-image-file! path)
          (define name path))]))
 
 (define (make-ball letter color [size 100])

@@ -53,6 +53,8 @@
     (system* git "checkout" "-B" "master")
     (for ([f (in-list (dict-values html-file-table))])
       (system* git "add" f))
+    (for ([f (in-list image-files)])
+      (system* git "add" f))
     (system* git "commit" "-m" "\"Automatic commit\"")
     (system* git "push" "origin" "master" "-f")
     (system* git "checkout" (current-branch))))
