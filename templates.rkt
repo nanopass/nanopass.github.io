@@ -3,6 +3,7 @@
 @(provide (all-defined-out))
 @(require scribble/html/html
           scribble/html/xml
+          racket/dict
           "files.rkt")
 
 @(define (header . v)
@@ -17,23 +18,25 @@
 @(define (navbar . current-page)
    @div[class: "navbar navbar-default"]{
      @div[class: "container-fluid"]{
-       @div[class: "navbar-header"]{
-         @button[type: "button"
-                 class: "navbar-toggle collapsed"
-                 data-toggle: "collapse"
-                 data-target: "#navbar"
-                 aria-expanded: "false"
-                 aria-controls: "navbar"]{
-           @span[class: "sr-only"]{Toggle navigation}
-           @span[class: "icon-bar"]
-           @span[class: "icon-bar"]
-           @span[class: "icon-bar"]}}
-       @div[id: "navbar" class: "navbar-collapse collapse"]{
-         @ul[class: "nav navbar-nav"]{
-           @(for/list ([title-pair (in-list html-file-table)])
-              (if (equal? (cdr title-pair) (car current-page))
-                  @li[role: "presentation" class: "active"]{@a[href: "#" (cdr title-pair)]}
-                  @li[role: "presentation"]{@a[href: (car title-pair) (cdr title-pair)]}))}}}})
+       @div[class: "row"]{
+         @div[class: "navbar-header"]{
+           @button[type: "button"
+                   class: "navbar-toggle collapsed"
+                   data-toggle: "collapse"
+                   data-target: "#navbar"
+                   aria-expanded: "false"
+                   aria-controls: "navbar"]{
+             @span[class: "sr-only"]{Toggle navigation}
+             @span[class: "icon-bar"]
+             @span[class: "icon-bar"]
+             @span[class: "icon-bar"]}}
+         @a[class: "navbar-brand" href: (dict-ref html-file-table "Home")]{Hello}
+         @div[id: "navbar" class: "navbar-collapse collapse"]{
+           @ul[class: "nav navbar-nav"]{
+             @(for/list ([title-pair (in-list html-file-table)])
+                (if (equal? (car title-pair) (car current-page))
+                    @li[role: "presentation" class: "active"]{@a[href: "#" (car title-pair)]}
+                    @li[role: "presentation"]{@a[href: (cdr title-pair) (car title-pair)]}))}}}}})
 
 @(define (footer . v)
    (list
