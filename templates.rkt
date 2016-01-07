@@ -47,10 +47,11 @@
     @script[src: "js/bootstrap.min.js"]))
 
 @(define (page #:title title . content)
-   @doctype{html}
-   @html[lang: "en"]{
-     @header{title}
-     @body[id: "pn-top"]{
-       @navbar{title}
-       @content
-       @footer{}}})
+  (list
+    @doctype{html}
+    @html[lang: "en"]{
+      @header{title}
+      @body[id: "pn-top"]{
+        @navbar{title}
+        @content
+        @footer{}}}))
