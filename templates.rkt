@@ -4,7 +4,8 @@
 @(require scribble/html/html
           scribble/html/xml
           racket/dict
-          "files.rkt")
+          "files.rkt"
+          "logos/icon.rkt")
 
 @(define (header . v)
    @head{
@@ -16,7 +17,7 @@
      @title[v]{ - Nanopass Frameowrk}})
 
 @(define (navbar . current-page)
-   @div[class: "navbar navbar-default"]{
+   @div[class: "navbar navbar-inverse"]{
      @div[class: "container-fluid"]{
        @div[class: "row"]{
          @div[class: "navbar-header"]{
@@ -30,7 +31,8 @@
              @span[class: "icon-bar"]
              @span[class: "icon-bar"]
              @span[class: "icon-bar"]}}
-         @a[class: "navbar-brand" href: (dict-ref html-file-table "Home")]{Hello}
+         @a[class: "navbar-brand" href: (dict-ref html-file-table "Home")]{
+           @img[src: banner alt: "Nanopass logo" height: "75" width: "150"]}
          @div[id: "navbar" class: "navbar-collapse collapse"]{
            @ul[class: "nav navbar-nav"]{
              @(for/list ([title-pair (in-list html-file-table)])
