@@ -3,6 +3,7 @@
 
 (require compiler/find-exe
          racket/runtime-path
+         frog
          "files.rkt")
 
 (define-runtime-path project-root-dir ".")
@@ -11,14 +12,30 @@
 
 (define deploy? (make-parameter #f))
 (define force? (make-parameter #f))
+(define watch? (make-parameter #f))
+(define port (make-parameter 8080))
 
 (define flags
   (command-line
    #:program "nanopass-website-make"
    #:once-each
+   [("-w" "--watch")
+    "(BETA) Automatically rebuild website when files are changed"
+    (watch? #t)]
+   [("-x" "--port")
+    "Change the port of the server"
+    (port port)]
+   #:once-any
    [("-d" "--deploy")
     "Deploy blog to github"
     (deploy? #t)]
+   [("-p" "--preview")
+    "Preview in web browser"
+    (serve #:launch-browser? #t
+           #:watch? (watch?)
+           #:port (port)
+           #:root project-root-dir)]
+   #:once-each
    [("-f" "--force")
     "Force deply, even with unchecked changes"
     (force? #t)]))
