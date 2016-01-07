@@ -20,8 +20,8 @@
                       ((file-or-directory-modify-seconds #,(syntax-source stx))
                        . < .
                        (file-or-directory-modify-seconds path)))
+           (add-image-file! path)
            (void (send name-bitmap save-file path 'png)))
-         (add-image-file! path)
          (define name path))]))
 
 (define (make-ball letter color [size 100])

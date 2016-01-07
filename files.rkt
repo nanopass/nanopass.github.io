@@ -2,7 +2,7 @@
 
 (provide html-file-table
          files
-         image-files
+         current-image-files
          add-image-file!)
 
 (require racket/runtime-path
@@ -27,7 +27,10 @@
              [v (in-list (dict-values file-table))])
     (cons f (path-replace-suffix v ".html"))))
 
-(define image-files '())
+(define (current-image-files)
+  (file->lines "image-files"))
 
 (define (add-image-file! file)
-  (set! image-files (cons file image-files)))
+  (with-output-to-file "image-files"
+    #:exists 'append
+    (lambda () (displayln file))))
