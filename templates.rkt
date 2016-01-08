@@ -17,33 +17,37 @@
      @title[v]{ - Nanopass Frameowrk}})
 
 @(define (navbar . current-page)
-   @div[class: "navbar navbar-inverse"]{
+   @element/not-empty["nav" class: "navbar navbar-inverse"]{
      @div[class: "navbar-inner"]{
-       @div[class: "container-fluid"]{
-         @div[class: "row"]{
-           @div[class: "navbar-header"]{
-             @button[type: "button"
-                     class: "navbar-toggle collapsed"
-                     data-toggle: "collapse"
-                     data-target: "#navbar"
-                     aria-expanded: "false"
-                     aria-controls: "navbar"]{
-               @span[class: "sr-only"]{Toggle navigation}
-               @span[class: "icon-bar"]
-               @span[class: "icon-bar"]
-               @span[class: "icon-bar"]}
-             @a[class: "navbar-brand" href: (dict-ref html-file-table "Home")]{
-               @img[src: banner alt: "Nanopass logo" height: "70" width: "140"]}}
-           @div[id: "navbar" class: "navbar-collapse collapse"]{
-             @ul[class: "nav navbar-nav"]{
-               @(for/list ([title-pair (in-list html-file-table)])
-                  (if (equal? (car title-pair) (car current-page))
-                      @li[role: "presentation" class: "active"]{@a[href: "#" (car title-pair)]}
-                      @li[role: "presentation"]{@a[href: (cdr title-pair) (car title-pair)]}))}}}}}})
+       @div[class: "container"]{
+         @div[class: "navbar-header"]{
+           @button[type: "button"
+                   class: "navbar-toggle collapsed"
+                   data-toggle: "collapse"
+                   data-target: "#navbar"
+                   aria-expanded: "false"
+                   aria-controls: "navbar"]{
+             @span[class: "sr-only"]{Toggle navigation}
+             @span[class: "icon-bar"]
+             @span[class: "icon-bar"]
+             @span[class: "icon-bar"]}
+           @a[class: "navbar-brand" href: (dict-ref html-file-table "Home")]{
+             @img[src: banner alt: "Nanopass logo" height: "70" width: "140"]}}
+         @div[id: "navbar" class: "navbar-collapse collapse"]{
+           @ul[class: "nav navbar-nav pull-right"]{
+             @(for/list ([title-pair (in-list html-file-table)])
+               (if (equal? (car title-pair) (car current-page))
+                 @li[role: "presentation" class: "active"]{@a[href: "#" (car title-pair)]}
+                 @li[role: "presentation"]{@a[href: (cdr title-pair) (car title-pair)]}))}}}}})
 
 @(define (footer . v)
    (list
-    @element/not-empty["footer" class: "footer"]{@p{Nanopass}}
+    @div[class: "container"]{
+      @element/not-empty["footer" class: "footer float:right"]{
+        @div[class: "copyright"]{
+          @p[style: "float:left"]{Copyright © 2016 Leif Andersen, Andy Keep}}
+        @div[class: "pull-right"]{
+          @img[src: icon alt: "Nanopass icon" height: "25" width: "25"]}}}
     @script[src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"]
     @script[src: "js/bootstrap.min.js"]))
 

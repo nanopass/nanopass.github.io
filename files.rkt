@@ -15,6 +15,7 @@
       ("Home"              . "index.rkt")
       ("Download"          . "download.rkt")
       ("Documentation"     . "documentation.rkt")
+      ("Community"         . "community.rkt")
       )))
 (require 'files-mod
          (for-syntax 'files-mod))
