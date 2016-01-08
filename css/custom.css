@@ -7,7 +7,7 @@ body {
     min-height: 100px !important;
 }
 
-.navbar {
-    position: relative;
+.navbar-nav > li > a {
+    line-height: 70px;
     font-size: 30px;
 }
