@@ -7,10 +7,7 @@ body {
     min-height: 100px !important;
 }
 
-.collapse {
-    padding-top: 20px;
-}
-
 .navbar {
+    position: relative;
     font-size: 30px;
 }
