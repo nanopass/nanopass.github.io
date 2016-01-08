@@ -3,5 +3,5 @@
 @require["templates.rkt"]
 
 @page[#:title "Documentation"]{
- @p{Some documentation}
+ @div[class: "container"]{@p{Some documentation}}
 }

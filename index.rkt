@@ -3,5 +3,5 @@
 @require["templates.rkt"]
 
 @page[#:title "Home"]{
-  @p{Hello World!}
+  @div[class: "container"]{@p{Hello World!}}
 }
