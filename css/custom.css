@@ -4,10 +4,14 @@ body {
 
 .navbar-inner,
 .navbar-header {
-    min-height: 100px !important;
+    min-height: 90px !important;
 }
 
 .navbar-nav > li > a {
-    line-height: 70px;
-    font-size: 30px;
+    line-height: 60px;
+    font-size: 25px;
+}
+
+.jumbotron {
+    margin-top: -20px;
 }

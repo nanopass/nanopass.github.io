@@ -33,7 +33,7 @@
                @span[class: "icon-bar"]
                @span[class: "icon-bar"]}
              @a[class: "navbar-brand" href: (dict-ref html-file-table "Home")]{
-               @img[src: banner alt: "Nanopass logo" height: "75" width: "150"]}}
+               @img[src: banner alt: "Nanopass logo" height: "70" width: "140"]}}
            @div[id: "navbar" class: "navbar-collapse collapse"]{
              @ul[class: "nav navbar-nav"]{
                @(for/list ([title-pair (in-list html-file-table)])
