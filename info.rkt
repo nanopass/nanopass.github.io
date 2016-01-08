@@ -4,6 +4,6 @@
 (define deps '("base"
                "scribble-lib"
                "pict-lib"
-               "image-lib"
+               "images-lib"
                "frog"
                "markdown"))
