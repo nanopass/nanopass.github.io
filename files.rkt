@@ -28,10 +28,10 @@
              [v (in-list (dict-values file-table))])
     (cons f (path-replace-suffix v ".html"))))
 
+(define current-image-files* '())
+
 (define (current-image-files)
-  (file->lines "image-files"))
+  current-image-files*)
 
 (define (add-image-file! file)
-  (with-output-to-file "image-files"
-    #:exists 'append
-    (lambda () (displayln file))))
+  (set! current-image-files* (cons file current-image-files*)))
