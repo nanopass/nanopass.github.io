@@ -34,3 +34,7 @@ body {
   color: white;
   background-color: crimson;
 }
+
+.blurb {
+    text-align: center;
+}
