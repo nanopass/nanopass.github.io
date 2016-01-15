@@ -21,4 +21,5 @@
     @h1{Papers}
     @ul{
       @li{@a[href: "http://andykeep.com/pubs/dissertation.pdf"]{A Nanopass Framework For Commercial Compiler Development},
-        PhD Thesis for Andy Keep.}}}}
+        PhD Thesis for Andy Keep.}
+      @li{@a[href: "http://www.cs.indiana.edu/~dyb/pubs/nano-jfp.pdf"]{A Nanopass Framework for Compiler Education}, Dipanwita Sarkar, Oscar Waddell, R. Kent Dybvig}}}}
