@@ -42,12 +42,13 @@
 
 @(define (footer . v)
    (list
+    @div[class: "footer-color"]{
     @div[class: "container"]{
       @element/not-empty["footer" class: "footer float:right"]{
         @div[class: "copyright"]{
           @p[style: "float:left"]{Copyright © 2016 Leif Andersen, Andy Keep}}
         @div[class: "pull-right"]{
-          @img[src: icon alt: "Nanopass icon" height: "25" width: "25"]}}}
+          @img[src: icon alt: "Nanopass icon" height: "25" width: "25"]}}}}
     @script[src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"]
     @script[src: "js/bootstrap.min.js"]))
 
