@@ -9,7 +9,7 @@
   @div[class: "container"]{
     @div[class: "row"]{
       @div[class: "col-md-4 blurb"]{
-        @h2{@a[href: "http://pkg-build.racket-lang.org/doc/user-guide/index.html"]{User Guide}}
+        @h2{@a[href: "http://pkg-build.racket-lang.org/doc/nanopass/index.html"]{User Guide}}
         @p{Detailed documentation on Nanopass.}}
       @div[class: "col-md-4 blurb"]{
         @h2{@a[href: "http://github.com/nanopass/"]{Sample Compilers}}
