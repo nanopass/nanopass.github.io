@@ -16,7 +16,7 @@
         @p{Examples of Compilers that were created using Nanopass.}}
       @div[class: "col-md-4 blurb"]{
         @h2{@a[href: "https://www.youtube.com/watch?v=Os7FE3J-U5Q"]{Writing a Nanopass Compiler Video}}
-        @p{Andy Keep discuss writing a Scheme to C compiler using Nanopss, given at Clojure/Conj 2013}}}}
+        @p{Andy Keep discuss writing a Scheme to C compiler using Nanopass, given at Clojure/Conj 2013}}}}
   @div[class: "container"]{
     @h1{Papers}
     @ul{

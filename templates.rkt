@@ -14,7 +14,7 @@
      @meta[name: "viewport" 'content: "width=device-width, initial-scale=1"]
      @link[href: "css/bootstrap.min.css" rel: "stylesheet"]
      @link[href: "css/custom.css" rel: "stylesheet"]
-     @title[v]{ - Nanopass Frameowrk}})
+     @title[v]{ - Nanopass Framework}})
 
 @(define (navbar . current-page)
    @element/not-empty["nav" class: "navbar navbar-inverse"]{

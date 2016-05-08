@@ -53,7 +53,7 @@
              #:root project-root-dir)]
      #:once-each
      [("-f" "--force")
-      "Force deply, even with unchecked changes"
+      "Force deploy, even with unchecked changes"
       (force? #t)]))
 
   (parameterize ([current-directory project-root-dir])
@@ -63,7 +63,7 @@
         (with-output-to-string
           (lambda () (system* git "rev-parse" "--abbrev-ref" "HEAD"))))))
 
-    ;; Error if repo is not in commitable state
+    ;; Error if repo is not in committable state
     (when (deploy?)
       ; Uncommitted code
       (when (and (non-empty-string? (with-output-to-string
